@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agendar Consulta - Easy Visa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/appointment.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Flatpickr para calendário moderno -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <style>
+    /* Estilos inline para progresso e responsividade */
+    .progress-bar {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .progress-step {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #ddd;
+      margin: 0 5px;
+      transition: background 0.3s;
+    }
+    .progress-step.active { background: #C8831C; }
+    .progress-step.completed { background: #004aad; }
+    .error-message { font-size: 0.9rem; margin-top: 5px; color: #dc3545; }
+    @media (max-width: 768px) {
+      .floating-box { padding: 1rem; width: 95%; }
+      .service-options { grid-template-columns: 1fr; }
+      .actions { flex-direction: column; gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER PADRÃO -->
+  <header class="header fixed scroll-transparent">
+    <div class="container nav-container">
+      <a href="index.html" class="logo"><img src="fotos/svg.svg" alt="Easy Visa Logo"></a>
+      <nav class="nav">
+        <ul class="nav-list">
+          <li><a href="index.html#servicos">Serviços</a></li>
+          <li><a href="index.html#sobre">Sobre Nós</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+          <li><a href="appointment.html" class="active">Agendar</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="appointment-container">
+    <div class="floating-box">
+      <!-- Indicador de Progresso -->
+      <div class="progress-bar">
+        <div id="step-1-indicator" class="progress-step active"></div>
+        <div id="step-2-indicator" class="progress-step"></div>
+        <div id="step-3-indicator" class="progress-step"></div>
+        <div id="step-4-indicator" class="progress-step"></div>
+      </div>
+
+      <!-- Etapa 1: Escolher serviço -->
+      <section id="step-1" class="step active" aria-labelledby="step-1-title">
+        <h2 id="step-1-title">Escolha o tipo de serviço</h2>
+        <p class="subtext">A taxa de agendamento é <strong>AUD 200</strong> e será descontada do valor total do processo.</p>
+
+        <div class="service-options">
+          <div class="service-card" data-service="Visto de Turismo">
+            <i class="fas fa-plane"></i>
+            <h3>Visto de Turismo</h3>
+            <p>Consultoria e suporte para visto de turismo australiano.</p>
+          </div>
+
+          <div class="service-card" data-service="Visto de Estudo">
+            <i class="fas fa-graduation-cap"></i>
+            <h3>Visto de Estudo</h3>
+            <p>Orientação completa para estudantes que desejam morar na Austrália.</p>
+          </div>
+
+          <div class="service-card" data-service="Visto de Trabalho">
+            <i class="fas fa-briefcase"></i>
+            <h3>Visto de Trabalho</h3>
+            <p>Assistência na solicitação de vistos temporários e permanentes de trabalho.</p>
+          </div>
+
+          <div class="service-card" data-service="Consultoria Geral">
+            <i class="fas fa-question-circle"></i>
+            <h3>Consultoria Geral</h3>
+            <p>Tire dúvidas sobre vistos, processos e requisitos em uma conversa com nossos especialistas.</p>
+          </div>
+        </div>
+
+        <button id="next-btn" class="btn-primary" disabled>Próximo ➜</button>
+      </section>
+
+      <section id="step-2" class="step hidden" aria-labelledby="step-2-title">
+        <h2 id="step-2-title">Escolha a data e o horário</h2>
+        <p class="subtext">Selecione uma data disponível no calendário interativo.</p>
+
+        <div class="date-picker-container">
+          <label for="date">Data:</label>
+          <input type="text" id="date" placeholder="Clique para selecionar uma data" required>
+          <div id="date-error" class="error-message" style="display: none;">Selecione uma data válida.</div>
+        </div>
+
+        <div id="time-slots" class="time-slots">
+          <p>Selecione uma data para ver os horários disponíveis.</p>
+        </div>
+
+        <div class="actions">
+          <button id="back-to-step1" class="btn-secondary">⬅ Voltar</button>
+          <button id="next-to-step3" class="btn-primary" disabled>Próximo ➜</button>
+        </div>
+      </section>
+
+      <!-- Etapa 3: Dados Pessoais -->
+      <section id="step-3" class="step hidden" aria-labelledby="step-3-title">
+        <h2 id="step-3-title">Seus dados</h2>
+        <p class="subtext">Preencha suas informações para confirmarmos o agendamento.</p>
+
+        <form id="personal-data-form" class="personal-form">
+          <div class="form-group">
+            <input type="text" id="fullname" placeholder=" " required aria-describedby="fullname-error">
+            <label for="fullname">Nome completo</label>
+            <span id="fullname-error" class="error-message" style="display: none;">Nome obrigatório.</span>
+          </div>
+
+          <div class="form-group">
+            <input type="tel" id="phone" placeholder=" " pattern="[0-9]+" required aria-describedby="phone-error">
+            <label for="phone">Telefone (WhatsApp)</label>
+            <span id="phone-error" class="error-message" style="display: none;">Telefone obrigatório (apenas números).</span>
+          </div>
+
+          <div class="form-group">
+            <input type="email" id="email" placeholder=" " required aria-describedby="email-error">
+            <label for="email">Email</label>
+            <span id="email-error" class="error-message" style="display: none;">Email válido obrigatório.</span>
+          </div>
+        </form>
+
+        <div class="actions">
+          <button id="back-to-step2" class="btn-secondary">⬅ Voltar</button>
+          <button id="next-to-step4" class="btn-primary" disabled>Próximo ➜</button>
+        </div>
+      </section>
+
+      <!-- Etapa 4: Revisão e Pagamento -->
+      <section id="step-4" class="step hidden" aria-labelledby="step-4-title">
+        <h2 id="step-4-title">Revisar e Confirmar Agendamento</h2>
+        <p class="subtext">Confira seus dados antes de prosseguir com o pagamento.</p>
+
+        <div class="confirmation-wrapper">
+          <div class="summary-card">
+            <div class="summary-item">
+              <strong>Serviço:</strong> <span id="summary-service"></span>
+            </div>
+            <div class="summary-item">
+              <strong>Data:</strong> <span id="summary-date"></span>
+            </div>
+            <div class="summary-item">
+              <strong>Horário:</strong> <span id="summary-time"></span>
+            </div>
+            <div class="summary-item">
+              <strong>Nome:</strong> <span id="summary-name"></span>
+            </div>
+            <div class="summary-item">
+              <strong>Telefone:</strong> <span id="summary-phone"></span>
+            </div>
+            <div class="summary-item">
+              <strong>Email:</strong> <span id="summary-email"></span>
+            </div>
+            <div class="summary-item price">
+              <strong>Valor a pagar:</strong> AUD 200
+            </div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="back-to-step3" class="btn-secondary">⬅ Voltar</button>
+          <button id="confirm-and-pay" class="btn-primary">Confirmar e Pagar 💳</button>
+        </div>
+
+        <p class="small-text">O valor de AUD 200 é referente à taxa de agendamento e será descontado do valor total do processo.</p>
+      </section>
+    </div>
+  </main>
+
+  <script src="js/appointment.js"></script>
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const payButton = document.getElementById("confirm-and-pay");
+    if (!payButton) return;
+
+    payButton.addEventListener("click", async (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      payButton.disabled = true;
+      payButton.textContent = "Redirecionando...";
+
+      // pega dados do resumo
+      const service = document.getElementById("summary-service").textContent.trim();
+      const date = document.getElementById("summary-date").textContent.trim();
+      const time = document.getElementById("summary-time").textContent.trim();
+      const fullname = document.getElementById("summary-name").textContent.trim();
+      const phone = document.getElementById("summary-phone").textContent.trim();
+      const email = document.getElementById("summary-email").textContent.trim();
+
+      try {
+        console.log("🔹 Enviando dados pro servidor Stripe...");
+        const response = await fetch("http://localhost:4242/create-checkout-session", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ service, date, time, fullname, phone, email }),
+        });
+
+        if (!response.ok) throw new Error("Erro ao criar sessão Stripe.");
+        const session = await response.json();
+        console.log("✅ Sessão Stripe criada:", session);
+
+        // inicializa o Stripe
+        const stripe = Stripe("pk_test_51SNCr2PVO1Wa9gdFyp5D6kx3sthJ3U1WubMVhHI7hRwNhaHAX1gCrPgfRuWYbmJ6oEcJaPLDtitq0fm31aMZ3U2o00IP5r9HpX"); // 🔹 sua chave publicável
+
+        // redireciona pro checkout
+        const result = await stripe.redirectToCheckout({ sessionId: session.id });
+
+        if (result.error) {
+          alert(result.error.message);
+        }
+      } catch (err) {
+        console.error("Erro no pagamento:", err);
+        alert("Ocorreu um erro ao iniciar o pagamento. Tente novamente.");
+      } finally {
+        payButton.disabled = false;
+        payButton.textContent = "Confirmar e Pagar 💳";
+      }
+    });
+  });
+</script>
+
+</script>
+
+
+  <!-- Inicialização do Flatpickr -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      flatpickr("#date", {
+        dateFormat: "Y-m-d",
+        minDate: "today",
+        disable: [
+          function(date) {
+            return (date.getDay() === 0 || date.getDay() === 6);
+          }
+        ],
+        locale: "pt",
+        onChange: function(selectedDates, dateStr, instance) {
+          const timeSlots = document.getElementById('time-slots');
+          const times = ["09:00", "11:00", "14:00", "16:00"];
+          timeSlots.innerHTML = '';
+          
+          times.forEach((time, index) => {
+            const btn = document.createElement('div');
+            btn.classList.add('time-slot');
+            btn.textContent = time;
+            btn.style.animationDelay = `${index * 0.1}s`;
+            btn.addEventListener('click', function() {
+              document.querySelectorAll('.time-slot').forEach(el => el.classList.remove('selected'));
+              this.classList.add('selected');
+            });
+            timeSlots.appendChild(btn);
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

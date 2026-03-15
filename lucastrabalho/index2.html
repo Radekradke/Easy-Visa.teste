@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encontre Seu Apartamento - Landing Page</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> <!-- Para ícone WhatsApp -->
+    <style>
+        body { font-family: 'Arial', sans-serif; background-color: #f8f9fa; }
+        .navbar { background-color: #007bff; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .navbar-brand img { height: 40px; }
+        .header { height: 80vh; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover; color: white; display: flex; align-items: center; justify-content: center; text-align: center; }
+        .header h1 { font-size: 3em; font-weight: bold; }
+        .carousel { padding: 50px 0; background-color: white; }
+        .product-section { padding: 50px 0; }
+        .product-card { border: none; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-bottom: 30px; }
+        .product-carousel { margin-bottom: 20px; }
+        .product-grid { margin-bottom: 20px; }
+        .product-grid img { width: 100%; height: 250px; object-fit: cover; border-radius: 8px; }
+        .product-text { padding: 20px; }
+        .form { background-color: #e9ecef; padding: 20px; border-radius: 8px; }
+        .form input, .form select, .form textarea { margin-bottom: 10px; }
+        .btn-primary { background-color: #007bff; border: none; }
+        .btn-primary:hover { background-color: #0056b3; }
+        /* Botão WhatsApp Flutuante */
+        .whatsapp-float { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background-color: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 8px rgba(0,0,0,0.3); z-index: 1000; transition: transform 0.3s; }
+        .whatsapp-float:hover { transform: scale(1.1); }
+        .whatsapp-float a { color: white; font-size: 24px; text-decoration: none; }
+        @media (max-width: 768px) { .whatsapp-float { bottom: 15px; right: 15px; width: 50px; height: 50px; } .whatsapp-float a { font-size: 20px; } }
+    </style>
+</head>
+<body>
+    <!-- Barra de Navegação -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="https://via.placeholder.com/100x40?text=Logo+Direcional" alt="Logo"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#header">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#carousel">Produtos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contato</a></li>
+                    <li class="nav-item"><a class="btn btn-light ms-3" href="#contact">Fale Conosco</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section id="header" class="header">
+        <div class="container">
+            <h1>Encontre Seu Apartamento Ideal</h1>
+            <p>Explore opções exclusivas com a qualidade Direcional.</p>
+            <button class="btn btn-primary btn-lg" onclick="document.getElementById('carousel').scrollIntoView({behavior: 'smooth'})">Ver Destaques</button>
+        </div>
+    </section>
+
+    <!-- Carrossel dos Produtos (Topo) -->
+    <section id="carousel" class="carousel">
+        <div class="container">
+            <h2 class="text-center mb-4">Produtos em Destaque</h2>
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide text-center">
+                        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Apartamento Praia" class="img-fluid rounded">
+                        <h4>Apartamento Praia</h4>
+                        <p>A partir de R$ 500.000</p>
+                        <button class="btn btn-primary" onclick="document.getElementById('product1').scrollIntoView({behavior: 'smooth'})">Ver Detalhes</button>
+                    </div>
+                    <div class="swiper-slide text-center">
+                        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Apartamento Centro" class="img-fluid rounded">
+                        <h4>Apartamento Centro</h4>
+                        <p>A partir de R$ 700.000</p>
+                        <button class="btn btn-primary" onclick="document.getElementById('product2').scrollIntoView({behavior: 'smooth'})">Ver Detalhes</button>
+                    </div>
+                    <div class="swiper-slide text-center">
+                        <img src="https://images.pixabay.com/photo/2016/11/18/17/46/house-1836070_1280.jpg" alt="Apartamento Família" class="img-fluid rounded">
+                        <h4>Apartamento Família</h4>
+                        <p>A partir de R$ 900.000</p>
+                        <button class="btn btn-primary" onclick="document.getElementById('product3').scrollIntoView({behavior: 'smooth'})">Ver Detalhes</button>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Produtos Individuais -->
+    <section class="product-section bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4">Nossos Apartamentos</h2>
+            <div class="row">
+                <!-- Produto 1: Foto esquerda, texto direita -->
+                <div class="col-md-12 mb-4" id="product1">
+                    <div class="card product-card">
+                        <!-- Carrossel de Fotos -->
+                        <div class="product-carousel">
+                            <div class="swiper product-swiper">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Foto 1 Praia" class="img-fluid"></div>
+                                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Foto 2 Praia" class="img-fluid"></div>
+                                    <div class="swiper-slide"><img src="https://images.pixabay.com/photo/2017/03/28/12/11/chairs-2181960_1280.jpg" alt="Foto 3 Praia" class="img-fluid"></div>
+                                </div>
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
+                                <div class="swiper-pagination"></div>
+                            </div>
+                        </div>
+                        <!-- Grid: Foto esquerda, texto direita -->
+                        <div class="product-grid row">
+                            <div class="col-md-6">
+                                <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Apartamento Praia">
+                            </div>
+                            <div class="col-md-6 product-text">
+                                <h5>Apartamento Praia</h5>
+                                <p>Localizado à beira-mar, com vista panorâmica e comodidades como piscina e academia. Perfeito para quem busca relaxamento e conveniência.</p>
+                                <button class="btn btn-primary" onclick="document.querySelector('#product1 .form').scrollIntoView({behavior: 'smooth'})">Saiba Mais</button>
+                            </div>
+                        </div>
+                        <!-- Form de Lead -->
+                        <div class="form">
+                            <h6>Interesse? Preencha para mais detalhes:</h6>
+                            <form action="/submit-lead" method="POST">
+                                <input type="text" name="name" placeholder="Nome" required class="form-control">
+                                <input type="email" name="email" placeholder="Email" required class="form-control">
+                                <input type="tel" name="phone" placeholder="Telefone" required class="form-control">
+                                <input type="number" name="budget" placeholder="Orçamento aproximado (R$)" required class="form-control">
+                                <select name="preferences" class="form-control">
+                                    <option value="">Preferências</option>
+                                    <option value="vista-mar">Vista para o mar</option>
+                                    <option value="proximo-metro">Próximo ao metrô</option>
+                                    <option value="financiamento">Interesse em financiamento</option>
+                                </select>
+                                <textarea name="message" placeholder="Mensagem adicional" class="form-control"></textarea>
+                                <button type="submit" class="btn btn-primary">Enviar Interesse</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produto 2: Texto esquerda, foto direita (invertido) -->
+                <div class="col-md-12 mb-4" id="product2">
+                    <div class="card product-card">
+                        <!-- Carrossel de Fotos -->
+                        <div class="product-carousel">
+                            <div class="swiper product-swiper">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Foto 1 Centro" class="img-fluid"></div>
+                                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Foto 2 Centro" class="img-fluid"></div>
+                                    <div class="swiper-slide"><img src="https://images.pixabay.com/photo/2016/11/18/17/46/house-1836070_1280.jpg" alt="Foto 3 Centro" class="img-fluid"></div>
+                                </div>
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
+                                <div class="swiper-pagination"></div>
+                            </div>
+                        </div>
+                        <!-- Grid: Texto esquerda, foto direita -->
+                        <div class="product-grid row flex-row-reverse">
+                            <div class="col-md-6">
+                                <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Apartamento Centro">
+                            </div>
+                            <div class="col-md-6 product-text">
+                                <h5>Apartamento Centro</h5>
+                                <p>No coração da cidade, com acesso fácil ao metrô e segurança 24h. Ideal para profissionais e famílias que valorizam praticidade.</p>
+                                <button class="btn btn-primary" onclick="document.querySelector('#product2 .form').scrollIntoView({behavior: 'smooth'})">Saiba Mais</button>
+                            </div>
+                        </div>
+                        <!-- Form de Lead -->
+                        <div class="form">
+                            <h6>Interesse? Preencha para mais detalhes:</h6>
+                            <form action="/submit-lead" method="POST">
+                                <input type="text" name="name" placeholder="Nome" required class="form-control">
+                                <input type="email" name="email" placeholder="Email" required class="form-control">
+                                <input type="tel" name="phone" placeholder="Telefone" required class="form-control">
+                                <input type="number" name="budget" placeholder="Orçamento aproximado (R$)" required class="form-control">
+                                <select name="preferences" class="form-control">
+                                    <option value="">Preferências</option>
+                                    <option value="vista-mar">Vista para o mar</option>
+                                    <option value="proximo-metro">Próximo ao metrô</option>
+                                    <option value="financiamento">Interesse em financiamento</option>
+                                </select>
+                                <textarea name="message" placeholder="Mensagem adicional" class="form-control"></textarea>
+                                <button type="submit" class="btn btn-primary">Enviar Interesse</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produto 3: Foto esquerda, texto direita (volta ao padrão) -->
+                <div class="col-md-12 mb-4" id="product3">
+                    <div class="card product-card">
+                        <!-- Carrossel de Fotos -->
+                        <div class="product-carousel">
+                            <div class="swiper product-swiper">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide"><img src="https://images.pixabay.com/photo/2016/11/18/17/46/house-1836070_1280.jpg" alt="Foto 1 Família" class="img-fluid"></div>
+                                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Foto 2 Família" class="img-fluid"></div>
+                                    <div class="swiper-slide"><img src="https://images.pixabay.com/photo/2017/03/28/12/11/chairs-2181960_1280.jpg" alt="Foto 3 Família" class="img-fluid"></div>
+                                </div>
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
+                                <div class="swiper-pagination"></div>
+                            </div>
+                        </div>
+                          <!-- Grid: Foto esquerda, texto direita -->
+                        <div class="product-grid row">
+                            <div class="col-md-6">
+                                <img src="https://images.pixabay.com/photo/2016/11/18/17/46/house-1836070_1280.jpg" alt="Apartamento Família">
+                            </div>
+                            <div class="col-md-6 product-text">
+                                <h5>Apartamento Família</h5>
+                                <p>Espaçoso e com área verde, playground e salão de festas. Perfeito para famílias que buscam conforto e comunidade.</p>
+                                <button class="btn btn-primary" onclick="document.querySelector('#product3 .form').scrollIntoView({behavior: 'smooth'})">Saiba Mais</button>
+                            </div>
+                        </div>
+                        <!-- Form de Lead -->
+                        <div class="form">
+                            <h6>Interesse? Preencha para mais detalhes:</h6>
+                            <form action="/submit-lead" method="POST">
+                                <input type="text" name="name" placeholder="Nome" required class="form-control">
+                                <input type="email" name="email" placeholder="Email" required class="form-control">
+                                <input type="tel" name="phone" placeholder="Telefone" required class="form-control">
+                                <input type="number" name="budget" placeholder="Orçamento aproximado (R$)" required class="form-control">
+                                <select name="preferences" class="form-control">
+                                    <option value="">Preferências</option>
+                                    <option value="vista-mar">Vista para o mar</option>
+                                    <option value="proximo-metro">Próximo ao metrô</option>
+                                    <option value="financiamento">Interesse em financiamento</option>
+                                </select>
+                                <textarea name="message" placeholder="Mensagem adicional" class="form-control"></textarea>
+                                <button type="submit" class="btn btn-primary">Enviar Interesse</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Simples -->
+    <footer id="contact" class="bg-dark text-white text-center py-4">
+        <p>Contato: (11) 9999-9999 | email@direcional.com.br</p>
+    </footer>
+
+    <!-- Botão WhatsApp Flutuante -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/5511999999999?text=Olá, tenho interesse nos apartamentos!" target="_blank" aria-label="Fale conosco no WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // Carrossel de Destaques (Topo)
+        const swiper = new Swiper('.swiper:not(.product-swiper)', {
+            pagination: { el: '.swiper-pagination', clickable: true },
+            autoplay: { delay: 4000 },
+            loop: true,
+        });
+
+        // Carrosséis Individuais dos Produtos
+        const productSwipers = document.querySelectorAll('.product-swiper');
+        productSwipers.forEach((swiperEl) => {
+            new Swiper(swiperEl, {
+                navigation: {
+                    nextEl: swiperEl.querySelector('.swiper-button-next'),
+                    prevEl: swiperEl.querySelector('.swiper-button-prev'),
+                },
+                pagination: { el: swiperEl.querySelector('.swiper-pagination'), clickable: true },
+                autoplay: { delay: 5000 },
+                loop: true,
+            });
+        });
+    </script>
+</body>
+</html>
