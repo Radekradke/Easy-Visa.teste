@@ -4,11 +4,14 @@
 
 ### Landing page e fluxo de agendamento para consultoria de vistos e mobilidade internacional
 
-![HTML5](https://img.shields.io/badge/HTML5-Estrutura-E34F26?style=for-the-badge&logo=html5&logoColor=fff)
-![CSS3](https://img.shields.io/badge/CSS3-Interface-1572B6?style=for-the-badge&logo=css3&logoColor=fff)
-![JavaScript](https://img.shields.io/badge/JavaScript-Fluxo-F7DF1E?style=for-the-badge&logo=javascript&logoColor=111)
-![Node.js](https://img.shields.io/badge/Node.js-Checkout-339933?style=for-the-badge&logo=node.js&logoColor=fff)
-![Stripe](https://img.shields.io/badge/Stripe-Pagamento-635BFF?style=for-the-badge&logo=stripe&logoColor=fff)
+<br>
+
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=fff)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=fff)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=111)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=fff)
+![Express](https://img.shields.io/badge/Express-111111?style=flat-square&logo=express&logoColor=fff)
+![Stripe](https://img.shields.io/badge/Stripe-635BFF?style=flat-square&logo=stripe&logoColor=fff)
 
 **Projeto desenvolvido como estudo aplicado para uma consultoria de vistos, apresentado aqui como case de portfólio.**
 
